@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { createItems, Item } from './item';
 import './App.css';
 
 function App() {
+  const [items, setItems] = useState([]);
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    setItems(createItems(100));
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React Infinte List</h1>
+      <span>{time.toTimeString()}</span>
+      <ul>
+        {items.map(item => (
+          <Item key={item.id} item={item} />
+        ))}
+      </ul>
     </div>
   );
 }
