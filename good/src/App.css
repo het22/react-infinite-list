@@ -20,15 +20,15 @@ span {
   color: grey;
 }
 
-ul {
+.ListWrapper {
   margin: 0;
-  padding: 0 12px;
-  overflow: scroll;
+  height: 100%;
 }
 
 li {
-  margin: 12px 0;
   list-style: none;
+  padding: 12px;
+  padding-top: 0;
 }
 
 section {
